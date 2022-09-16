@@ -1,6 +1,6 @@
 export interface PriceComponentProps {
-  key?: string;
+  id: string;
   label: string;
-  initialValue?: number;
+  initialValue: number;
   disposable: boolean;
 }

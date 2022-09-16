@@ -7,12 +7,16 @@
       </p>
     </div>
     <div class="w-1/2">
-      2.5
+      {{ store.totalPrice }}
       <span>Eur/Kg</span>
     </div>
   </div>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import { useStore } from '@/stores';
+
+const store = useStore();
+</script>
 
 <style scoped></style>

@@ -7,6 +7,7 @@
       :args="component"
       @delete="deletePriceComponent"
     />
+    <GhostPrice />
   </div>
 </template>
 
@@ -15,6 +16,7 @@ import PriceComponent from '@/components/Atoms/PriceComponent.vue';
 import PriceTotal from '@/components/Atoms/PriceTotal.vue';
 import { storeToRefs } from 'pinia';
 import { useStore } from '@/stores';
+import GhostPrice from '@/components/Atoms/GhostPrice.vue';
 
 const { components } = storeToRefs(useStore());
 

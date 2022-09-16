@@ -8,8 +8,9 @@
       :for="'price-' + props.args.id"
       class="w-2/4 block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2 cursor-pointer"
       @click="editPrice"
-      >{{ props.args.label }}</label
     >
+      {{ props.args.label }}
+    </label>
     <span
       v-if="!edit"
       class="w-1/4 block rounded-md text-sm leading-5 py-2 px-3 mr-14 border-2 border-slate-300 shadow-sm"
@@ -27,7 +28,7 @@
     <div class="absolute top-6 right-4 flex justify-end gap-4">
       <button v-show="hover" @click="editPrice()">
         <PencilSquareIcon
-          class="h-5 fill-slate-600 transition hover:fill-slate-400 hover:rotate-[-4deg]"
+          class="h-5 fill-slate-200 transition hover:fill-slate-400 hover:rotate-[-4deg]"
         />
       </button>
       <button

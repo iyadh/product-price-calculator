@@ -7,10 +7,10 @@
       </p>
     </div>
     <div class="w-1/2 flex justify-end items-baseline px-8 gap-2 mr-14">
-      <div class="flex items-start text-3xl font-semibold text-indigo-600">
+      <div class="flex items-start text-4xl font-black text-indigo-600">
         {{ total }}
         <span
-          class="ml-2 text-xs uppercase tracking-widest font-medium text-gray-500"
+          class="mt-1 ml-2 text-xs uppercase tracking-widest font-medium text-gray-500"
         >
           Eur/Kg
         </span>

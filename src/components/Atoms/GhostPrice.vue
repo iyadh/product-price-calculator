@@ -2,13 +2,16 @@
   <div class="relative flex justify-between px-8 py-4">
     <input
       v-model="label"
-      class="w-1/4 block rounded-md text-sm leading-5 py-2 px-3 mr-14 border-2 border-slate-300 shadow-sm focus:outline-none focus:ring focus:border-indigo-500 focus:ring-indigo-200"
+      :class="{ 'text-slate-500': edit, 'text-slate-200': !edit }"
+      class="w-2/4 block rounded-md text-sm leading-5 py-2 px-3 mr-14 border-2 border-slate-100 shadow-sm focus:outline-none focus:ring focus:border-indigo-500 focus:ring-indigo-200 placeholder:text-slate-200"
+      placeholder="Label goes here .."
       type="text"
       @focus="edit = true"
     />
     <input
       v-model="price"
-      class="w-1/4 block rounded-md text-sm leading-5 py-2 px-3 mr-14 border-2 border-slate-300 shadow-sm focus:outline-none focus:ring focus:border-indigo-500 focus:ring-indigo-200"
+      :class="{ 'text-slate-500': edit, 'text-slate-200': !edit }"
+      class="w-1/4 block rounded-md text-sm leading-5 py-2 px-3 mr-14 border-2 border-slate-100 shadow-sm focus:outline-none focus:ring focus:border-indigo-500 focus:ring-indigo-200 placeholder:text-slate-200"
       type="text"
       @focus="edit = true"
     />

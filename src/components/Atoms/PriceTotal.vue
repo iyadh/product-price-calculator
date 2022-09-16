@@ -6,17 +6,28 @@
         Lorem ipsum dolor sit amet, consectetur adipisicing elit.
       </p>
     </div>
-    <div class="w-1/2">
-      {{ store.totalPrice }}
-      <span>Eur/Kg</span>
+    <div class="w-1/2 flex justify-end items-baseline px-8 gap-2 mr-14">
+      <div class="flex items-start text-3xl font-semibold text-indigo-600">
+        {{ total }}
+        <span
+          class="ml-2 text-xs uppercase tracking-widest font-medium text-gray-500"
+        >
+          Eur/Kg
+        </span>
+      </div>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
 import { useStore } from '@/stores';
+import { computed } from 'vue';
 
 const store = useStore();
+
+const total = computed(() => {
+  return parseFloat(store.totalPrice.toString()).toFixed(2);
+});
 </script>
 
 <style scoped></style>

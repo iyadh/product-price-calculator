@@ -13,7 +13,7 @@ export const useStore = defineStore('components', () => {
   ]);
   const totalPrice = computed(() => {
     return components.value.reduce(
-      (prev: any, next: any) => prev + next.initialValue,
+      (prev: any, next: any) => (prev += +next.initialValue.toString()),
       0,
     );
   });

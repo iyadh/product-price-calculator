@@ -2,7 +2,7 @@
   <div class="flex flex-col divide-y divide-slate-100">
     <PriceTotal />
     <PriceComponent
-      :disposable="true"
+      :disposable="false"
       :label="'Bas Price:'"
       initial-value="1"
     />

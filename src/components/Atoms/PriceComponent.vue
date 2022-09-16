@@ -6,7 +6,7 @@
   >
     <label
       :for="'price' + props.key"
-      class="w-2/4 block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
+      class="w-2/4 block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2 cursor-pointer"
       >{{ props.label }}</label
     >
     <button v-show="hover" class="absolute top-6 right-80">

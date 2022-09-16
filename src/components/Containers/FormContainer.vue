@@ -3,7 +3,7 @@
     <PriceTotal />
     <PriceComponent
       :disposable="false"
-      :label="'Bas Price:'"
+      :label="'Base Price'"
       initial-value="1"
     />
     <PriceComponent :disposable="true" :label="'Test'" />

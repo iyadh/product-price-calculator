@@ -1,9 +1,11 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import AppContainer from "@/components/AppContainer.vue";
+</script>
 
 <template>
-<main>
-  <h1>Product Price Calculator</h1>
-</main>
+  <AppContainer>
+    <h1>Price Components</h1>
+  </AppContainer>
 </template>
 
 <style scoped></style>

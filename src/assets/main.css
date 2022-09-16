@@ -21,17 +21,16 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  display: flex;
+  place-items: center;
+  width: 100vw;
 }
 
 @media (min-width: 1024px) {
-  body {
-    display: flex;
-    place-items: center;
-  }
-
   #app {
     display: grid;
     grid-template-columns: 1fr;
     padding: 0 2rem;
+    width: 100%;
   }
 }

@@ -4,12 +4,12 @@
     @mouseleave="hover = false"
     @mouseover="hover = true"
   >
-    <div class="input--wrapper w-2/4 mr-14 flex flex-col">
+    <div class="input--wrapper mr-14 flex w-2/4 flex-col">
       <label
         v-if="!persistLabel"
         v-tippy="props.args.label"
         :for="'price-' + props.args.id"
-        class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2 cursor-pointer text-ellipsis overflow-hidden"
+        class="block cursor-pointer overflow-hidden text-ellipsis text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
         @click="editPrice"
       >
         {{ props.args.label }}
@@ -18,7 +18,7 @@
         v-if="persistLabel"
         :id="'label-' + props.args.id"
         v-model="label"
-        class="w-full block rounded-md text-sm leading-5 py-2 px-3 mr-14 border-2 border-slate-300 shadow-sm focus:outline-none focus:ring focus:border-indigo-500 focus:ring-indigo-200"
+        class="mr-14 block w-full rounded-md border-2 border-slate-300 py-2 px-3 text-sm leading-5 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring focus:ring-indigo-200"
         type="text"
         @blur="updatePriceComponent"
       />
@@ -26,11 +26,11 @@
         {{ errors.label }}
       </p>
     </div>
-    <div class="input--wrapper w-1/4 mr-14 flex flex-col">
+    <div class="input--wrapper mr-14 flex w-1/4 flex-col">
       <span
         v-if="!edit"
         v-tippy="props.args.initialValue.toString()"
-        class="block rounded-md text-sm leading-5 py-2 px-3 mr-14 border-2 border-transparent"
+        class="mr-14 block rounded-md border-2 border-transparent py-2 px-3 text-sm leading-5"
         @click="editPrice"
         >{{ computedPrice }}</span
       >
@@ -39,7 +39,7 @@
         :id="'price-' + props.args.id"
         ref="input"
         v-model="price"
-        class="w-full block rounded-md text-sm leading-5 py-2 px-3 mr-14 border-2 border-slate-300 shadow-sm focus:outline-none focus:ring focus:border-indigo-500 focus:ring-indigo-200"
+        class="mr-14 block w-full rounded-md border-2 border-slate-300 py-2 px-3 text-sm leading-5 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring focus:ring-indigo-200"
         type="text"
         @blur="updatePriceComponent"
       />
@@ -55,12 +55,12 @@
         @click="updatePriceComponent"
       >
         <CheckIcon
-          class="h-5 fill-green-200 transition hover:fill-green-400 hover:rotate-[-4deg]"
+          class="h-5 fill-green-200 transition hover:rotate-[-4deg] hover:fill-green-400"
         />
       </button>
       <button v-if="hover && !edit" @click="editPrice()">
         <PencilSquareIcon
-          class="h-5 fill-slate-200 transition hover:fill-slate-400 hover:rotate-[-4deg]"
+          class="h-5 fill-slate-200 transition hover:rotate-[-4deg] hover:fill-slate-400"
         />
       </button>
       <button
@@ -68,7 +68,7 @@
         @click="emits('delete', props.args.id)"
       >
         <TrashIcon
-          class="h-5 fill-red-200 transition hover:fill-red-400 hover:rotate-[-4deg]"
+          class="h-5 fill-red-200 transition hover:rotate-[-4deg] hover:fill-red-400"
         />
       </button>
     </div>

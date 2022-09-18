@@ -1,10 +1,10 @@
 <template>
   <div class="relative flex justify-between px-8 py-4">
-    <div class="w-2/4 flex flex-col">
+    <div class="flex w-2/4 flex-col">
       <input
         v-model="label"
         :class="{ 'text-slate-500': edit, 'text-slate-200': !edit }"
-        class="w-full block rounded-md text-sm leading-5 py-2 px-3 mr-14 border-2 border-slate-100 shadow-sm focus:outline-none focus:ring focus:border-indigo-500 focus:ring-indigo-200 placeholder:text-slate-200"
+        class="mr-14 block w-full rounded-md border-2 border-slate-100 py-2 px-3 text-sm leading-5 shadow-sm placeholder:text-slate-200 focus:border-indigo-500 focus:outline-none focus:ring focus:ring-indigo-200"
         placeholder="Label goes here .."
         type="text"
         @focus="edit = true"
@@ -14,11 +14,11 @@
       </p>
     </div>
 
-    <div class="w-1/4 mr-14 flex flex-col">
+    <div class="mr-14 flex w-1/4 flex-col">
       <input
         v-model="price"
         :class="{ 'text-slate-500': edit, 'text-slate-200': !edit }"
-        class="w-full block rounded-md text-sm leading-5 py-2 px-3 border-2 border-slate-100 shadow-sm focus:outline-none focus:ring focus:border-indigo-500 focus:ring-indigo-200 placeholder:text-slate-200"
+        class="block w-full rounded-md border-2 border-slate-100 py-2 px-3 text-sm leading-5 shadow-sm placeholder:text-slate-200 focus:border-indigo-500 focus:outline-none focus:ring focus:ring-indigo-200"
         type="text"
         @focus="edit = true"
       />
@@ -30,12 +30,12 @@
     <div v-if="edit" class="absolute top-6 right-4 flex justify-end gap-4">
       <button @click="addNewPriceComponent()">
         <CheckIcon
-          class="h-5 fill-green-200 transition hover:fill-green-400 hover:rotate-[-4deg]"
+          class="h-5 fill-green-200 transition hover:rotate-[-4deg] hover:fill-green-400"
         />
       </button>
       <button @click="reset">
         <XMarkIcon
-          class="h-5 fill-red-200 transition hover:fill-red-400 hover:rotate-[-4deg]"
+          class="h-5 fill-red-200 transition hover:rotate-[-4deg] hover:fill-red-400"
         />
       </button>
     </div>

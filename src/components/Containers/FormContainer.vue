@@ -27,8 +27,7 @@ components.value.push({
   disposable: true,
 });
 
-const deletePriceComponent = (event: any) => {
-  console.log('price delete:', event);
+const deletePriceComponent = (event: any): void => {
   components.value.splice(
     components.value.findIndex(item => item.id === event),
     1,

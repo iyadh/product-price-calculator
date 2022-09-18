@@ -122,18 +122,18 @@ watch([label, price], ([newLabel, newPrice]) => {
   );
 });
 
-const editPrice = () => {
+const editPrice = (): void => {
   edit.value = true;
   // nextTick(() => {
   //   input.value.focus();
   // });
 };
 
-const validate = () => {
+const validate = (): boolean => {
   return errors.value.label.length === 0 && errors.value.price.length === 0;
 };
 
-const updatePriceComponent = () => {
+const updatePriceComponent = (): void => {
   const index = components.value.findIndex(
     (item: PriceComponentProps) => item.id === props.args.id,
   );

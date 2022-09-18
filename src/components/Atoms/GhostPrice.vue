@@ -68,11 +68,11 @@ watch([label, price], ([newLabel, newPrice]) => {
   );
 });
 
-const validate = () => {
+const validate = (): boolean => {
   return errors.value.label.length === 0 && errors.value.price.length === 0;
 };
 
-const addNewPriceComponent = () => {
+const addNewPriceComponent = (): void => {
   if (validate()) {
     components.value.push({
       id: (components.value.length + 1).toString(),
@@ -83,7 +83,7 @@ const addNewPriceComponent = () => {
     reset();
   }
 };
-const reset = () => {
+const reset = (): void => {
   edit.value = false;
   label.value = '';
   price.value = 0;

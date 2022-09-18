@@ -7,7 +7,7 @@
       :args="component"
       @delete="deletePriceComponent"
     />
-    <GhostPrice />
+    <GhostPrice :key="labelErrorRenderKey" @rerender="forceRerender" />
   </div>
 </template>
 
@@ -17,21 +17,21 @@ import PriceTotal from '@/components/Atoms/PriceTotal.vue';
 import { storeToRefs } from 'pinia';
 import { useStore } from '@/stores';
 import GhostPrice from '@/components/Atoms/GhostPrice.vue';
+import { ref } from 'vue';
 
 const { components } = storeToRefs(useStore());
-
-components.value.push({
-  id: '124',
-  initialValue: 2.567,
-  label: 'Metal Price',
-  disposable: true,
-});
+const labelErrorRenderKey = ref(0);
 
 const deletePriceComponent = (event: any): void => {
   components.value.splice(
     components.value.findIndex(item => item.id === event),
     1,
   );
+};
+
+// Forces the GhostPrice component to rerender after adding the new values
+const forceRerender = (): void => {
+  labelErrorRenderKey.value += 1;
 };
 </script>
 

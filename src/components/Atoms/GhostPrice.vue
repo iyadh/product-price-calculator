@@ -9,7 +9,11 @@
         type="text"
         @focus="edit = true"
       />
-      <p v-if="errors.label" class="mt-2 text-xs text-red-400">
+      <p
+        v-if="errors.label"
+        :key="labelErrorRenderKey"
+        class="mt-2 text-xs text-red-400"
+      >
         {{ errors.label }}
       </p>
     </div>
@@ -29,14 +33,10 @@
 
     <div v-if="edit" class="absolute top-6 right-4 flex justify-end gap-4">
       <button @click="addNewPriceComponent()">
-        <CheckIcon
-          class="h-5 fill-green-200 transition hover:rotate-[-4deg] hover:fill-green-400"
-        />
+        <CheckIcon class="h-5 fill-green-200 transition hover:fill-green-400" />
       </button>
       <button @click="reset">
-        <XMarkIcon
-          class="h-5 fill-red-200 transition hover:rotate-[-4deg] hover:fill-red-400"
-        />
+        <XMarkIcon class="h-5 fill-red-200 transition hover:fill-red-400" />
       </button>
     </div>
   </div>
@@ -45,11 +45,16 @@
 <script lang="ts" setup>
 import { ref, watch } from 'vue';
 import { storeToRefs } from 'pinia';
+import { v4 as uuidv4 } from 'uuid';
 import { CheckIcon, XMarkIcon } from '@heroicons/vue/20/solid';
 import { useStore } from '@/stores';
 import { validateLabel, validatePrice } from '@/types/InputValidation';
 
 const { components } = storeToRefs(useStore());
+
+const emits = defineEmits<{
+  (e: 'rerender'): void;
+}>();
 
 const edit = ref(false);
 const label = ref('');
@@ -60,35 +65,33 @@ const errors = ref({
 });
 
 watch([label, price], ([newLabel, newPrice]) => {
-  errors.value.label = validateLabel(
-    newLabel === label.value ? label.value : newLabel,
-  );
-  errors.value.price = validatePrice(
-    newPrice === price.value ? price.value : newPrice,
-  );
+  errors.value.label = validateLabel(newLabel);
+  errors.value.price = validatePrice(newPrice);
 });
 
 const validate = (): boolean => {
   return errors.value.label.length === 0 && errors.value.price.length === 0;
 };
 
-const addNewPriceComponent = (): void => {
-  if (validate()) {
-    components.value.push({
-      id: (components.value.length + 1).toString(),
-      label: label.value,
-      initialValue: parseFloat(price.value.toString().replace(',', '.')),
-      disposable: true,
-    });
-    reset();
-  }
-};
 const reset = (): void => {
   edit.value = false;
   label.value = '';
   price.value = 0;
   errors.value.label = '';
   errors.value.price = '';
+};
+
+const addNewPriceComponent = (): void => {
+  if (validate()) {
+    components.value.push({
+      id: uuidv4(),
+      label: label.value,
+      initialValue: parseFloat(price.value.toString().replace(',', '.')),
+      disposable: true,
+    });
+    reset();
+    emits('rerender');
+  }
 };
 </script>
 

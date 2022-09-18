@@ -9,11 +9,7 @@
         type="text"
         @focus="edit = true"
       />
-      <p
-        v-if="errors.label"
-        :key="labelErrorRenderKey"
-        class="mt-2 text-xs text-red-400"
-      >
+      <p v-if="errors.label" class="mt-2 text-xs text-red-400">
         {{ errors.label }}
       </p>
     </div>

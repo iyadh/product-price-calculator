@@ -6,15 +6,16 @@
   >
     <div class="input--wrapper w-2/4 mr-14 flex flex-col">
       <label
-        v-if="!edit"
+        v-if="!persistLabel"
+        v-tippy="props.args.label"
         :for="'price-' + props.args.id"
-        class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2 cursor-pointer"
+        class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2 cursor-pointer text-ellipsis overflow-hidden"
         @click="editPrice"
       >
         {{ props.args.label }}
       </label>
       <input
-        v-if="edit"
+        v-if="persistLabel"
         :id="'label-' + props.args.id"
         v-model="label"
         class="w-full block rounded-md text-sm leading-5 py-2 px-3 mr-14 border-2 border-slate-300 shadow-sm focus:outline-none focus:ring focus:border-indigo-500 focus:ring-indigo-200"
@@ -28,6 +29,7 @@
     <div class="input--wrapper w-1/4 mr-14 flex flex-col">
       <span
         v-if="!edit"
+        v-tippy="props.args.initialValue.toString()"
         class="block rounded-md text-sm leading-5 py-2 px-3 mr-14 border-2 border-transparent"
         @click="editPrice"
         >{{ computedPrice }}</span
@@ -105,6 +107,10 @@ const label = ref(props.args.label);
 
 const computedPrice = computed(() => {
   return parseFloat(price.value.toString()).toFixed(2);
+});
+
+const persistLabel = computed(() => {
+  return props.args.disposable ? edit.value : false;
 });
 
 watch([label, price], ([newLabel, newPrice]) => {

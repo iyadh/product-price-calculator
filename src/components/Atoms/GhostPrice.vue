@@ -87,6 +87,8 @@ const reset = () => {
   edit.value = false;
   label.value = '';
   price.value = 0;
+  errors.value.label = '';
+  errors.value.price = '';
 };
 </script>
 

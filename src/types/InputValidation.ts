@@ -6,7 +6,7 @@ export const validateLabel = (label: string): string => {
 
 export const validatePrice = (value: number): string => {
   const regex: RegExp = /^\d*((\.)?|(,)?)(\d*)?$/g;
-  return regex.test(value.toString())
+  return value.toString().length > 0 && regex.test(value.toString())
     ? ''
     : 'Price must be a (positive) number.';
 };

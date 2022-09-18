@@ -83,7 +83,7 @@ import {
 import type { PriceComponentProps } from '@/types/price-component.type';
 import { storeToRefs } from 'pinia';
 import { useStore } from '@/stores';
-import { validateLabel, validatePrice } from '@/types/InputValidation.type';
+import { validateLabel, validatePrice } from '@/types/InputValidation';
 
 const { components } = storeToRefs(useStore());
 

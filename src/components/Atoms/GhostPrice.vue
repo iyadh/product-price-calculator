@@ -47,7 +47,7 @@ import { ref, watch } from 'vue';
 import { storeToRefs } from 'pinia';
 import { CheckIcon, XMarkIcon } from '@heroicons/vue/20/solid';
 import { useStore } from '@/stores';
-import { validateLabel, validatePrice } from '@/types/InputValidation.type';
+import { validateLabel, validatePrice } from '@/types/InputValidation';
 
 const { components } = storeToRefs(useStore());
 

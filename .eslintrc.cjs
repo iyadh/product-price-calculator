@@ -10,15 +10,23 @@ module.exports = {
     'vue/setup-compiler-macros': true,
   },
   extends: [
-    'plugin:vue/vue3-essential',
+    'plugin:vue/vue3-recommended',
     'eslint:recommended',
+    '@vue/typescript/recommended',
     '@vue/eslint-config-typescript',
     '@vue/eslint-config-prettier',
   ],
-  parser: '@typescript-eslint/parser',
+  parser: 'vue-eslint-parser',
   parserOptions: {
+    parser: '@typescript-eslint/parser',
+    sourceType: 'module',
     ecmaVersion: 'latest',
+    ecmaFeatures: {
+      jsx: false,
+    },
   },
   plugins: ['vue', '@typescript-eslint'],
-  rules: {},
+  rules: {
+    'vue/no-multiple-template-root': 1,
+  },
 };

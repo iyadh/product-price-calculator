@@ -22,7 +22,7 @@ import { ref } from 'vue';
 const { components } = storeToRefs(useStore());
 const labelErrorRenderKey = ref(0);
 
-const deletePriceComponent = (event: any): void => {
+const deletePriceComponent = (event: string): void => {
   components.value.splice(
     components.value.findIndex(item => item.id === event),
     1,

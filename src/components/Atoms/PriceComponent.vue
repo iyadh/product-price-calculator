@@ -20,7 +20,7 @@
         v-model="label"
         class="mr-14 block w-full rounded-md border-2 border-slate-300 py-2 px-3 text-sm leading-5 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring focus:ring-indigo-200"
         type="text"
-        @blur="updatePriceComponent"
+        @blur="emits('update', preparePayload())"
       />
       <p v-if="errors.label" class="mt-2 text-xs text-red-400">
         {{ errors.label }}
@@ -41,7 +41,7 @@
         v-model="price"
         class="mr-14 block w-full rounded-md border-2 border-slate-300 py-2 px-3 text-sm leading-5 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring focus:ring-indigo-200"
         type="text"
-        @blur="updatePriceComponent"
+        @blur="emits('update', preparePayload())"
       />
       <p v-if="errors.price" class="mt-2 text-xs text-red-400">
         {{ errors.price }}
@@ -52,7 +52,7 @@
       <button
         v-if="hover && edit"
         :disabled="!validate()"
-        @click="updatePriceComponent"
+        @click="emits('update', preparePayload())"
       >
         <CheckIcon
           class="h-5 fill-green-200 transition hover:rotate-[-4deg] hover:fill-green-400"
@@ -83,11 +83,13 @@ import {
   TrashIcon,
 } from '@heroicons/vue/20/solid';
 import type { PriceComponentProps } from '@/types/price-component.type';
-import { storeToRefs } from 'pinia';
-import { useStore } from '@/stores';
 import { validateLabel, validatePrice } from '@/types/InputValidation';
 
-const { components } = storeToRefs(useStore());
+const props = withDefaults(defineProps<{ args: PriceComponentProps }>(), {});
+const emits = defineEmits<{
+  (e: 'delete', id: string): void;
+  (e: 'update', payload: { id: string; label?: string; price?: string }): void;
+}>();
 
 const hover = ref(false);
 const edit = ref(false);
@@ -96,12 +98,6 @@ const errors = ref({
   label: '',
   price: '',
 });
-
-const props = withDefaults(defineProps<{ args: PriceComponentProps }>(), {});
-const emits = defineEmits<{
-  (e: 'delete', id: string): void;
-}>();
-
 const price = ref(props.args.initialValue);
 const label = ref(props.args.label);
 
@@ -133,19 +129,14 @@ const validate = (): boolean => {
   return errors.value.label.length === 0 && errors.value.price.length === 0;
 };
 
-const updatePriceComponent = (): void => {
-  const index = components.value.findIndex(
-    (item: PriceComponentProps) => item.id === props.args.id,
-  );
+const preparePayload = (): any => {
   if (validate()) {
-    components.value[index].label =
-      label.value.trim().length > 0
-        ? label.value
-        : components.value[index].label;
-    components.value[index].initialValue = parseFloat(
-      price.value.toString().replace(',', '.'),
-    );
     edit.value = false;
+    return {
+      id: props.args.id,
+      label: label.value.trim().length > 0 ? label.value : props.args.label,
+      price: price.value.toString().replace(',', '.'),
+    };
   }
 };
 </script>

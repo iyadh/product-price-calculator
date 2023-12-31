@@ -25,7 +25,7 @@ jobs:
         username: ${{ secrets.VPS_USERNAME }}
         password: ${{ secrets.VPS_PASSWORD }}
         port: ${{ secrets.VPS_PORT }}
-        source: "myapp.tar"
+        source: "price-calc.tar"
         target: "/tmp"
 
     - name: Deploy to VPS

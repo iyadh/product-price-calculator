@@ -6,9 +6,10 @@ RUN yarn install
 COPY . .
 RUN yarn build
 
-# Step 2: Serve the application from Nginx
-FROM nginx:stable-alpine as production-stage
-COPY --from=build-stage /app/dist /usr/share/nginx/html
+# Step 2: Serve the application using a static server
+FROM node:latest as serve-stage
+WORKDIR /app
+COPY --from=build-stage /app/dist /app
+RUN yarn global add serve
 EXPOSE 8001
-CMD ["nginx", "-g", "daemon off;"]
-
+CMD ["serve", "-s", ".", "-l", "8001"]

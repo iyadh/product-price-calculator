@@ -37,6 +37,6 @@ jobs:
         port: ${{ secrets.VPS_PORT }}
         script: |
           docker load < /tmp/price-calc.tar
-          docker stop -price-calc || true
+          docker stop price-calc || true
           docker rm price-calc || true
-          docker run -d --name price-calc -p 8001:8001 price-calc
+          docker run -d --name price-calc -p 8001:8001 price-calc:latest

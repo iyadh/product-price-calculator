@@ -5,7 +5,7 @@
     "dev": "vite",
     "build": "run-p type-check build-only",
     "preview": "vite preview --port 4173",
-    "build-only": "vite build",
+    "build-only": "vite build --base=/price-calculator/",
     "type-check": "vue-tsc --noEmit",
     "lint": "eslint . --ext .vue,.cjs,.mjs,.ts,.cts,.mts --fix --ignore-path .gitignore"
   },

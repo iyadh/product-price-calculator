@@ -40,4 +40,4 @@ jobs:
             docker load < /tmp/price-calc.tar
             docker stop price-calc || true
             docker rm price-calc || true
-            docker run -d --name price-calc -p 8003:8003 price-calc:latest
+            docker run -d --name price-calc -p 8001:8001 price-calc:latest
